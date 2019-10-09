@@ -1,6 +1,7 @@
 import tracery
 from tracery.modifiers import base_english
 import random
+import math
 
 #card parts
 #name (string)
@@ -107,6 +108,7 @@ def main():
                           'a #minionType# and a #minionType#.1sub',
                           'a #minionType#, a #minionType#, and a #minionType#.1sub'],
         'minionType': ['Beast#mWith#',
+                       'Lackey',
                        'Totem#mWith#',
                        'Elemental#mWith#',
                        'Demon#mWith#',
@@ -122,7 +124,7 @@ def main():
                        'minion#mWith#',
                        'minion#mWith#',
                        'minion#mWith#'],
-        'mWith': ['','','','','','',
+        'mWith': ['','','','','','','',
                   ' with #number# #stat#.1sub',
                   ' with cost (#cNumber#).1sub',
                   ' with #taunt#',
@@ -147,6 +149,7 @@ def main():
                     'Shuffle #copyOf# into #whoseDeck#',
                     'Add a #aNumber#/#hNumber# #minionType# that costs (#cNumber#) to your hand',
                     'Add a random spell (from your opponents class) to your hand',
+                    'Add a random #minionType# to your hand',
                     'Add a random #class# spell to your hand',
                     '#discover# a #minionType#',
                     '#discover# a spell',
@@ -236,6 +239,7 @@ def main():
                     'Shuffle #dCopyOf# into #whoseDeck#',
                     'Add a #aNumber#/#hNumber# #minionType# that costs (#cNumber#) to your hand',
                     'Add a random spell (from your opponents class) to your hand',
+                    'Add a random #minionType# to your hand',
                     'Add a random #class# spell to your hand',
                     'Draw a card',
                     'Draw two cards.1add',
@@ -504,7 +508,7 @@ def main():
     cardText = cardText.replace('.10sub', '')
 
 
-    cardCost = cardBaseCost + cardTextCostAdjustment
+    cardCost = math.floor(cardBaseCost + cardTextCostAdjustment)
 
     if(cardCost > 10 and cardText.find(".CR") == -1):
         cardCost = 10
